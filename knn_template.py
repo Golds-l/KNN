@@ -21,7 +21,7 @@ KNN_NEIGHBOR = 100
 
 # Convert next digit from input file as a vector
 # Return (digit, vector) or (-1, '') on end of file
-def read_digit(p_fp):
+def read_digit(p_fp):   # 读取文件内容 返回val: int 和 vec: list
     # read entire digit (inlude linefeeds)
     bits = p_fp.read(NUM_ROWS * (NUM_COLS + 1))
     if bits == '':
@@ -35,7 +35,7 @@ def read_digit(p_fp):
 # Parse all digits from training file
 # and store all digits (as vectors) 
 # in dictionary g_dataset 
-def load_data(p_filename=DATA_TRAINING):
+def load_data(p_filename=DATA_TRAINING):  # 将内容写入全局变量g_dataset: dict
     global g_dataset
     # Initial each key as empty list 
     g_dataset = defaultdict(list)
@@ -49,7 +49,7 @@ def load_data(p_filename=DATA_TRAINING):
 
 # Given a digit vector, returns
 # the k nearest neighbor by vector distance
-def knn(p_v, size=KNN_NEIGHBOR):
+def knn(p_v, size=KNN_NEIGHBOR):  # knn算法 返回K值范围内的元组
     nn = []
     for d, vectors in g_dataset.items():
         for v in vectors:  # v:list
@@ -63,7 +63,7 @@ def knn(p_v, size=KNN_NEIGHBOR):
 
 # Based on the knn Model (nearest neighhor),
 # return the target value
-def knn_by_most_common(p_v):
+def knn_by_most_common(p_v):  # 通过Counter()得到距离最近的一个
     nn = knn(p_v)
     print(nn)
     # TODO: target value
@@ -73,7 +73,7 @@ def knn_by_most_common(p_v):
 # Make prediction based on kNN model
 # Parse each digit from the predict file
 # and print the predicted balue
-def predict(p_filename=DATA_PREDICT):
+def predict(p_filename=DATA_PREDICT):  # 读取预测文件内容， 打印出结果
     # TODO
     print('TO DO: show results of prediction')
     vecT = []
@@ -90,7 +90,7 @@ def predict(p_filename=DATA_PREDICT):
 # Compile an accuracy report by
 # comparing the data set with every
 # digit from the testing file 
-def validate(p_filename=DATA_TESTING):
+def validate(p_filename=DATA_TESTING):  #
     global g_test_bad, g_test_good, g_test
     g_test_bad = defaultdict(int)
     g_test_good = defaultdict(int)
